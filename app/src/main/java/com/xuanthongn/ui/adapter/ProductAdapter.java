@@ -1,6 +1,7 @@
 package com.xuanthongn.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.xuanthongn.DetailActivity;
+import com.xuanthongn.MainActivity;
 import com.xuanthongn.R;
 import com.xuanthongn.data.model.Product;
+import com.xuanthongn.util.Constants;
 
 import java.util.List;
 
@@ -40,6 +44,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 //                .load(hero.getImage())
 //                .into(holder.mImageHero);
         holder.mTextName.setText(product.name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //KHoi dong Activty DetailActivity
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra(Constants.PRODUCT_ID, product.id);
+
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -11,6 +11,8 @@ import java.util.List;
 
 @Dao
 public interface ProductDao {
+    @Query("SELECT * FROM products WHERE Id=:productId LIMIT 1")
+    Product find(int productId);
     @Query("SELECT * FROM products")
     List<Product> getAll();
 
@@ -19,6 +21,9 @@ public interface ProductDao {
 
     @Query("SELECT * FROM products")
     List<Product> getNewProducts();
+
+    @Query("SELECT * FROM products WHERE category_id=:categoryId")
+    List<Product> getProductsByCategory(int categoryId);
 
     @Insert
     void insertAll(Product... products);
